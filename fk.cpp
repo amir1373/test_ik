@@ -22,6 +22,12 @@ using namespace std;
 #define a5 0
 #define a6 0
 
+double tetha1 = 0;
+double tetha2 = 0;
+double tetha3 = 0;
+double tetha4 = 0;
+double tetha5 = 0;
+double tetha6 = 0;
 
 
 
