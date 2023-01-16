@@ -59,6 +59,7 @@ Matrix3d T0_6;
 int main()
 {
 while(1){
+    
 T0_1 << cos(tetha1), (-1) * sin(tetha1)* cos(alpha1), sin(tetha1)* sin(alpha1)         , alpha1 * cos(tetha1),
         sin(tetha1), cos(tetha1) * cos(alpha1)      , (-1) * cos(tetha1) * sin(alpha1) , alpha1 * sin(tetha1),
         0          , sin(alpha1)                    , cos(alpha1)                      , d1                  ,
