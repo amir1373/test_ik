@@ -43,13 +43,13 @@ double tetha6 = 0;
 
 # define PI           3.14159265358979323846  /* pi */
 
-Matrix3d T0_1;
-Matrix3d T1_2;
-Matrix3d T2_3;
-Matrix3d T3_4;
-Matrix3d T4_5;
-Matrix3d T5_6;
-Matrix3d T0_6;
+Matrix4d T0_1;
+Matrix4d T1_2;
+Matrix4d T2_3;
+Matrix4d T3_4;
+Matrix4d T4_5;
+Matrix4d T5_6;
+Matrix4d T0_6;
 
 
 
@@ -59,7 +59,18 @@ Matrix3d T0_6;
 int main()
 {
 while(1){
-    
+    cout << "input tetha1: "; // Type a number and press enter
+    cin >> tetha1; // Get user input from the keyboard
+        cout << "input tetha2: "; // Type a number and press enter
+    cin >> tetha2; // Get user input from the keyboard
+        cout << "input tetha3: "; // Type a number and press enter
+    cin >> tetha3; // Get user input from the keyboard
+        cout << "input tetha4: "; // Type a number and press enter
+    cin >> tetha4; // Get user input from the keyboard
+        cout << "input tetha5: "; // Type a number and press enter
+    cin >> tetha5; // Get user input from the keyboard
+        cout << "input tetha6: "; // Type a number and press enter
+    cin >> tetha6; // Get user input from the keyboard
 T0_1 << cos(tetha1), (-1) * sin(tetha1)* cos(alpha1), sin(tetha1)* sin(alpha1)         , alpha1 * cos(tetha1),
         sin(tetha1), cos(tetha1) * cos(alpha1)      , (-1) * cos(tetha1) * sin(alpha1) , alpha1 * sin(tetha1),
         0          , sin(alpha1)                    , cos(alpha1)                      , d1                  ,
@@ -89,4 +100,7 @@ T0_6 << cos(tetha6), (-1) * sin(tetha6)* cos(alpha6), sin(tetha6)* sin(alpha6)  
         sin(tetha6), cos(tetha6) * cos(alpha6)      , (-1) * cos(tetha6) * sin(alpha6) , alpha2 * sin(tetha6),
         0          , sin(alpha6)                    , cos(alpha6)                      , d6                  ,
         0          , 0                              , 0                                , 0                   ;
+cout << "matrix output"; // Type a number and press enter
+cout << T0_6; // Type a number and press enter
+
 }
