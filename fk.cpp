@@ -1,5 +1,16 @@
 #include "iostream"
+#include "Eigen/Core"
+#include "Eigen/Dense"
+#include <vector>
+#include "math.h"
+
+
 using namespace std;
+
+using namespace Eigen;
+
+
+
 
 #define d1 0
 #define d2 0
@@ -30,8 +41,29 @@ double tetha5 = 0;
 double tetha6 = 0;
 
 
+# define PI           3.14159265358979323846  /* pi */
+
+Matrix3d T0_1;
+Matrix3d T1_2;
+Matrix3d T2_3;
+Matrix3d T3_4;
+Matrix3d T4_5;
+Matrix3d T5_6;
+
+
+
+
 
 int main()
 {
-    std::cout << "Hello World" << std::endl;
+while(1){
+T0_1 << cos(tetha1), (-1) * sin(tetha1)* cos(alpha1), sin(tetha1)* sin(alpha1)         , alpha1 * cos(tetha1),
+        sin(tetha1), cos(tetha1) * cos(alpha1)      , (-1) * cos(tetha1) * sin(alpha1) , alpha1 * sin(tetha1),
+        0          , sin(alpha1)                    , cos(alpha1)                      , d1                  ,
+        0          , 0                              , 0                                , 0                   ;
+
+
+
+
+}
 }
