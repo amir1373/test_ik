@@ -54,10 +54,6 @@ Matrix4d T5_6;
 Matrix4d T0_6;
 
 
-
-
-
-
 int main()
 {
 while(1){
@@ -139,7 +135,28 @@ T0_6 = T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6 ;
 
 cout << "matrix output"; // Type a number and press enter
 cout << T0_6; // Type a number and press enter
-cin >> tetha1; // Get user input from the keyboard
+    cout << "input tetha1: "; // Type a number and press enter
+    cin >> tetha1; // Get user input from the keyboard
+    tetha1 = (tetha1 * (PI/180));
+        cout << "input tetha2: "; // Type a number and press enter
+    cin >> tetha2; // Get user input from the keyboard
+        tetha2 = (tetha2 * (PI/180));
+
+        cout << "input tetha3: "; // Type a number and press enter
+    cin >> tetha3; // Get user input from the keyboard
+        tetha3 = (tetha3 * (PI/180));
+
+        cout << "input tetha4: "; // Type a number and press enter
+    cin >> tetha4; // Get user input from the keyboard
+        tetha4 = (tetha4 * (PI/180));
+
+        cout << "input tetha5: "; // Type a number and press enter
+    cin >> tetha5; // Get user input from the keyboard
+        tetha5 = (tetha5 * (PI/180));
+
+        cout << "input tetha6: "; // Type a number and press enter
+    cin >> tetha6; // Get user input from the keyboard
+        tetha6 = (tetha6 * (PI/180));
 
 
 }
