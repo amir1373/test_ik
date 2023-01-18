@@ -8,10 +8,23 @@
     pitch: beta=arctan(-r31/sqrt( r32^2+r33^2 ) )
     roll: gamma=arctan(r32/r33)
 */
-    double roll, pitch, yaw;
-    roll=M_PI/3;
-    pitch=M_PI/4;
-    yaw=M_PI/6;
+#include "iostream"
+#include "Eigen/Core"
+#include "Eigen/Dense"
+#include <vector>
+#include "math.h"
+
+
+using namespace std;
+
+using namespace Eigen;
+double roll, pitch, yaw;
+# define PI           3.14159265358979323846  /* pi */
+int main(){
+
+    roll=PI/3;
+    pitch=PI/4;
+    yaw=PI/6;
     Eigen::AngleAxisd rollAngle(roll, Eigen::Vector3d::UnitX());
     Eigen::AngleAxisd pitchAngle(pitch, Eigen::Vector3d::UnitY());
     Eigen::AngleAxisd yawAngle(yaw, Eigen::Vector3d::UnitZ());
@@ -21,6 +34,7 @@
  
  
  
-    std::cout<<"roll is Pi/" <<M_PI/atan2( rotationMatrix(2,1),rotationMatrix(2,2) ) <<std::endl;
-    std::cout<<"pitch: Pi/" <<M_PI/atan2( -rotationMatrix(2,0), std::pow( rotationMatrix(2,1)*rotationMatrix(2,1) +rotationMatrix(2,2)*rotationMatrix(2,2) ,0.5  )  ) <<std::endl;
-    std::cout<<"yaw is Pi/" <<M_PI/atan2( rotationMatrix(1,0),rotationMatrix(0,0) ) <<std::endl;
+    cout<<"roll is : %d Pi/" <<M_PI/atan2( rotationMatrix(2,1),rotationMatrix(2,2) ) <<std::endl;
+    cout<<"pitch: %d Pi/" <<M_PI/atan2( -rotationMatrix(2,0), std::pow( rotationMatrix(2,1)*rotationMatrix(2,1) +rotationMatrix(2,2)*rotationMatrix(2,2) ,0.5  )  ) <<std::endl;
+    cout<<"yaw is: %d Pi/" <<M_PI/atan2( rotationMatrix(1,0),rotationMatrix(0,0) ) <<std::endl;
+}
