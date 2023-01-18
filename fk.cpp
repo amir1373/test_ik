@@ -45,13 +45,15 @@ double tetha6 = 0;
 
 
 
-Matrix4d T0_1;
-Matrix4d T1_2;
-Matrix4d T2_3;
-Matrix4d T3_4;
-Matrix4d T4_5;
-Matrix4d T5_6;
-Matrix4d T0_6;
+Matrix4f T0_1;
+Matrix4f T1_2;
+Matrix4f T2_3;
+Matrix4f T3_4;
+Matrix4f T4_5;
+Matrix4f T5_6;
+Matrix4f T0_6;
+Matrix3f rotMat;
+MatrixXf posMat;
 
 
 int main()
@@ -84,8 +86,8 @@ T0_1 << cos(tetha1), (-1) * sin(tetha1)* cos(alpha1), sin(tetha1)* sin(alpha1)  
         sin(tetha1), cos(tetha1) * cos(alpha1)      , (-1) * cos(tetha1) * sin(alpha1) , a1 * sin(tetha1),
         0          , sin(alpha1)                    , cos(alpha1)                      , d1                  ,
         0          , 0                              , 0                                , 1                  ;
-        cout << "matrix output T0_1"; // Type a number and press enter
-cout << T0_1; // Type a number and press enter
+//         cout << "matrix output T0_1"; // Type a number and press enter
+// cout << T0_1; // Type a number and press enter
 
 
 T1_2 << cos(tetha2), (-1) * sin(tetha2)* cos(alpha2), sin(tetha2)* sin(alpha2)         , a2 * cos(tetha2),
@@ -93,8 +95,8 @@ T1_2 << cos(tetha2), (-1) * sin(tetha2)* cos(alpha2), sin(tetha2)* sin(alpha2)  
         0          , sin(alpha2)                    , cos(alpha2)                      , d2                  ,
         0          , 0                              , 0                                , 1                   ;
 
-          cout << "matrix output T1_2"; // Type a number and press enter
-cout << T1_2; // Type a number and press enter      
+//           cout << "matrix output T1_2"; // Type a number and press enter
+// cout << T1_2; // Type a number and press enter      
 
 
 T2_3 << cos(tetha3), (-1) * sin(tetha3)* cos(alpha3), sin(tetha3)* sin(alpha3)         , a3 * cos(tetha3),
@@ -102,29 +104,29 @@ T2_3 << cos(tetha3), (-1) * sin(tetha3)* cos(alpha3), sin(tetha3)* sin(alpha3)  
         0          , sin(alpha3)                    , cos(alpha3)                      , d3                  ,
         0          , 0                              , 0                                , 1                  ;
 
-          cout << "matrix output T2_3"; // Type a number and press enter
-cout << T2_3; // Type a number and press enter     
+//           cout << "matrix output T2_3"; // Type a number and press enter
+// cout << T2_3; // Type a number and press enter     
 
 T3_4 << cos(tetha4), (-1) * sin(tetha4)* cos(alpha4), sin(tetha4)* sin(alpha4)         , a4 * cos(tetha4),
         sin(tetha4), cos(tetha4) * cos(alpha4)      , (-1) * cos(tetha4) * sin(alpha4) , a4 * sin(tetha4),
         0          , sin(alpha4)                    , cos(alpha4)                      , d4                  ,
         0          , 0                              , 0                                , 1                   ;
 
-          cout << "matrix output T3_4"; // Type a number and press enter
-cout << T3_4; // Type a number and press enter     
+//           cout << "matrix output T3_4"; // Type a number and press enter
+// cout << T3_4; // Type a number and press enter     
 T4_5 << cos(tetha5), (-1) * sin(tetha5)* cos(alpha5), sin(tetha5)* sin(alpha5)         , a5 * cos(tetha5),
         sin(tetha5), cos(tetha5) * cos(alpha5)      , (-1) * cos(tetha5) * sin(alpha5) , a5 * sin(tetha5),
         0          , sin(alpha5)                    , cos(alpha5)                      , d5                  ,
         0          , 0                              , 0                                , 1                  ;
-          cout << "matrix output T4_5"; // Type a number and press enter
-cout << T4_5; // Type a number and press enter     
+//           cout << "matrix output T4_5"; // Type a number and press enter
+// cout << T4_5; // Type a number and press enter     
 
 T5_6 << cos(tetha6), (-1) * sin(tetha6)* cos(alpha6), sin(tetha6)* sin(alpha6)         , a6 * cos(tetha6),
         sin(tetha6), cos(tetha6) * cos(alpha6)      , (-1) * cos(tetha6) * sin(alpha6) , a6 * sin(tetha6),
         0          , sin(alpha6)                    , cos(alpha6)                      , d6                  ,
         0          , 0                              , 0                                , 1                   ;
-          cout << "matrix output T5_6"; // Type a number and press enter
-cout << T5_6; // Type a number and press enter     
+//           cout << "matrix output T5_6"; // Type a number and press enter
+// cout << T5_6; // Type a number and press enter     
 
 
 // T0_6 << cos(tetha6), (-1) * sin(tetha6)* cos(alpha6), sin(tetha6)* sin(alpha6)         , alpha6 * cos(tetha6),
@@ -132,9 +134,22 @@ cout << T5_6; // Type a number and press enter
 //         0          , sin(alpha6)                    , cos(alpha6)                      , d6                  ,
 //         0          , 0                              , 0                                , 0                   ;
 T0_6 = T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6 ;
+rotMat = T0_6.block<3, 3>(0, 0);
+posMat = T0_6.block<3, 1>(0, 3);
 
-cout << "matrix output"; // Type a number and press enter
-cout << T0_6; // Type a number and press enter
+
+
+
+
+
+cout << "T matrix output\n"; // Type a number and press enter
+cout << T0_6 << "\n"; // Type a number and press enter
+cout << "P matrix output\n"; // Type a number and press enter
+cout << rotMat << "\n"; // Type a number and press enter
+
+cout << "R matrix output\n"; // Type a number and press enter
+cout << posMat << "\n"; // Type a number and press enter
+
     cout << "input tetha1: "; // Type a number and press enter
     cin >> tetha1; // Get user input from the keyboard
     tetha1 = (tetha1 * (PI/180));
