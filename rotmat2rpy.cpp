@@ -19,6 +19,7 @@ using namespace std;
 
 using namespace Eigen;
 double roll, pitch, yaw;
+int puase = 0 ;
 # define PI           3.14159265358979323846  /* pi */
 int main(){
 
@@ -37,4 +38,5 @@ int main(){
     cout<<"roll is : %d Pi/" <<M_PI/atan2( rotationMatrix(2,1),rotationMatrix(2,2) ) <<std::endl;
     cout<<"pitch: %d Pi/" <<M_PI/atan2( -rotationMatrix(2,0), std::pow( rotationMatrix(2,1)*rotationMatrix(2,1) +rotationMatrix(2,2)*rotationMatrix(2,2) ,0.5  )  ) <<std::endl;
     cout<<"yaw is: %d Pi/" <<M_PI/atan2( rotationMatrix(1,0),rotationMatrix(0,0) ) <<std::endl;
+    cin >> puase ;
 }
