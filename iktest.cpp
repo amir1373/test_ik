@@ -1,14 +1,8 @@
-#include <ros/ros.h>
-
-
-#include "ros/time.h"
 #include <iostream>
 #include <vector>
-#include <boost/thread/thread.hpp>
-#include <eigen3/Eigen/Core>
-#include <eigen3/Eigen/Dense>
+#include "Eigen/Core"
+#include "Eigen/Dense"
 
-#include <iktest/random_pose.h>
 
 #include <math.h>
 #include <numeric>
@@ -29,33 +23,7 @@ vector<double> ee_FKPose;
 
 double valueThreshold = 0.000001;
 
-void EE_RandomPoseCallback(const iktest::random_pose::ConstPtr& msg)
-{
 
-    //7 elements in order: first three are position; last four are orientation
-    //x, y, z, w, x, y, z,
-    randomPose.clear();
-
-    randomPose.push_back(msg->ee_randomPose[0]); // displacement x
-    randomPose.push_back(msg->ee_randomPose[1]); // displacement y
-    randomPose.push_back(msg->ee_randomPose[2]); // displacement z
-
-    randomPose.push_back(msg->ee_randomPose[3]); // orientation w
-    randomPose.push_back(msg->ee_randomPose[4]); // orientation x
-    randomPose.push_back(msg->ee_randomPose[5]); // orientation y
-    randomPose.push_back(msg->ee_randomPose[6]); // orientation z
-
-    // cerr << "Random pose is : " << endl;
-    // for(int i = 0; i < 7; i++)
-    //     cerr << randomPose[i] << ", ";
-    // cerr << endl;
-
-    //print out the message sequence
-    cerr << "msg Sequence " << msg->header.seq << " : ";
-
-    IkComputeFunction(randomPose);
-
-}
 
 //convert Quaternion to Euler
 struct Quaternion_ {
@@ -102,9 +70,7 @@ double Le;
 void IkComputeFunction(vector<double> randomPose_)
 {
     //clear out last set joint angle value
-    goalJointAngle.clear();
 
-    ros::Time begin = ros::Time::now();
 
     ///------------------Define joint angle variable-------------------/////
     double T1;
@@ -533,7 +499,6 @@ void IkComputeFunction(vector<double> randomPose_)
     goalJointAngle.push_back(T5);
     goalJointAngle.push_back(T6);
 
-    ros::Duration duration_ = ros::Time::now() - begin;
     //cerr << "execution time ===================================== " << duration_ << endl;
 
     FkComputeFunction(goalJointAngle);
@@ -581,16 +546,16 @@ void FkComputeFunction(vector<double> goalJointAngle_)
     double T3_g = atan2(140, 795);
 
     R0_1 << -sin(T1), 0, cos(T1),
-        cos(T1), 0, sin(T1),
-        0,       1, 0;
+             cos(T1), 0, sin(T1),
+             0,       1, 0;
 
     R1_2 << -sin(T2), -cos(T2), 0,
-        cos(T2), -sin(T2), 0,
-        0,        0,       1;
+            cos(T2), -sin(T2), 0,
+              0,        0,       1;
 
     R2_3 << cos(T3), 0,  sin(T3),
-        sin(T3), 0, -cos(T3),
-        0,       1,  0;
+           sin(T3), 0, -cos(T3),
+           0,       1,  0;
 
     //d0_1 already defined above
     //This is the original displacement vector
@@ -631,14 +596,14 @@ void FkComputeFunction(vector<double> goalJointAngle_)
     //4.--->rotation matrix between frame 3 and frame 4
     Matrix3d R3_4;
     R3_4 << cos(T4), 0,  sin(T4),
-        sin(T4), 0, -cos(T4),
-        0,       1,  0;
+           sin(T4), 0, -cos(T4),
+            0,       1,  0;
 
     //5.--->rotation matrix between frame 4 and frame 5
     Matrix3d R4_5;
     R4_5 << -sin(T5), 0, -cos(T5),
-        cos(T5), 0, -sin(T5),
-        0,       -1, 0;
+            cos(T5), 0, -sin(T5),
+            0,       -1, 0;
 
     //6.--->rotation matrix between frame 5 and frame 6
     Matrix3d R5_6;
@@ -740,15 +705,15 @@ void IkTestResult(vector<double> ee_FKPose_)
 
 int main(int argc, char** argv)
 {
-
-    ros::init(argc, argv, "iktest");
-
-    ros::NodeHandlePtr n = boost::make_shared<ros::NodeHandle>();
-    int rate_pub = 100; // 100 Hz
-
-    ros::Subscriber sub_ = n->subscribe("random_pose_published", 100, &EE_RandomPoseCallback);
+    while(1){
 
 
-    ros::spin();
+
+
+
+    }
+    
+
+
     return 0;
 }
