@@ -232,14 +232,14 @@ void IkComputeFunction(vector<double> randomPose_)
     //Compute the rotational matrix R1_0
     Matrix3d R1_0;
     R1_0 << sin(T1),  cos(T1), 0,
-        0,        0,       1,
-        cos(T1), -sin(T1), 0;
+             0,        0,       1,
+             cos(T1), -sin(T1), 0;
 
     //static rotation matrix, frame 0 relative to frame 1
     Matrix3d R1_0s;
     R1_0s << 0, 1, 0,
-        0, 0, 1,
-        1, 0, 0;
+             0, 0, 1,
+             1, 0, 0;
 
     //Compute d1_c measured in frame 0
     Vector3d d1_c = d0_c - d0_1;
