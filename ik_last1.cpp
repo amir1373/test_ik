@@ -137,24 +137,23 @@ int main()
             // q_.x = randomPose_[4];
             // q_.y = randomPose_[5];
             // q_.z = randomPose_[6];
-            cout << "input q.w: "; // Type a number and press enter
-            cin >> q_.w;           // Get user input from the keyboard
-            cout << "input q.x: "; // Type a number and press enter
-            cin >> q_.x;           // Get user input from the keyboard
-            cout << "input q.y: "; // Type a number and press enter
-            cin >> q_.y;           // Get user input from the keyboard
-
-            cout << "input q.z: "; // Type a number and press enter
-            cin >> q_.z;           // Get user input from the keyboard
+            // cout << "input q.w: "; // Type a number and press enter
+            // cin >> q_.w;           // Get user input from the keyboard
+            // cout << "input q.x: "; // Type a number and press enter
+            // cin >> q_.x;           // Get user input from the keyboard
+            // cout << "input q.y: "; // Type a number and press enter
+            // cin >> q_.y;           // Get user input from the keyboard
+            // cout << "input q.z: "; // Type a number and press enter
+            // cin >> q_.z;           // Get user input from the keyboard
 
             // cerr << "quaternion pose ---------------------- just before toEulerAngle -------------------------" << endl;
             // cerr << "w = " << q_.w << ", " << "x = " << q_.x << ", " << "y = " << q_.y << ", " << "z = " << q_.z << endl;
             RowVector4d Last_row(0.0, 0.0, 0.0, 1.0);
-            e_ = toEulerAngle(q_);
+            // e_ = toEulerAngle(q_);
 
-            double Tp = e_.pitch; // Y axis
-            double Tr = e_.roll;  // X axis
-            double Ty = e_.yaw;   // Z axis
+            // double Tp = e_.pitch; // Y axis
+            // double Tr = e_.roll;  // X axis
+            // double Ty = e_.yaw;   // Z axis
             // cerr << "Tr = " << Tr << ", " << "Tp = " << Tp << ", " << "Ty = " << Ty << endl;
 
             // Displacement input from user in meter relative to the world frame
@@ -166,7 +165,6 @@ int main()
             double Ze = 0;        // mm
             cout << "input Xe: "; // Type a number and press enter
             cin >> Xe;            // Get user input from the keyboard
-
             cout << "input Ye: "; // Type a number and press enter
             cin >> Ye;            // Get user input from the keyboard
             cout << "input Ze: "; // Type a number and press enter
@@ -194,23 +192,23 @@ int main()
 
             double r11, r12, r13, r21, r22, r23, r31, r32, r33;
 
-            R0_3 << cos(u) * cos(v1 + w1), sin(u), cos(u) * sin(v1 + w1),
-                cos(v1 + w1) * sin(u), -1 * cos(u), sin(u) * sin(v1 + w1),
-                sin(v1 + w1), 0, -1 * cos(v1 + w1);
-            // X axis
-            pw_6 << 1.0, 0.0, 0.0,
-                0.0, cos(Tr), -sin(Tr),
-                0.0, sin(Tr), cos(Tr);
+            // R0_3 << cos(u) * cos(v1 + w1), sin(u), cos(u) * sin(v1 + w1),
+            //     cos(v1 + w1) * sin(u), -1 * cos(u), sin(u) * sin(v1 + w1),
+            //     sin(v1 + w1), 0, -1 * cos(v1 + w1);
+            // // X axis
+            // pw_6 << 1.0, 0.0, 0.0,
+            //     0.0, cos(Tr), -sin(Tr),
+            //     0.0, sin(Tr), cos(Tr);
 
-            // Y axis
-            rw_6 << cos(Tp), 0.0, sin(Tp),
-                0.0, 1.0, 0.0,
-                -sin(Tp), 0.0, cos(Tp);
+            // // Y axis
+            // rw_6 << cos(Tp), 0.0, sin(Tp),
+            //     0.0, 1.0, 0.0,
+            //     -sin(Tp), 0.0, cos(Tp);
 
-            // Z axis
-            yw_6 << cos(Ty), -sin(Ty), 0.0,
-                sin(Ty), cos(Ty), 0.0,
-                0.0, 0.0, 1.0;
+            // // Z axis
+            // yw_6 << cos(Ty), -sin(Ty), 0.0,
+            //     sin(Ty), cos(Ty), 0.0,
+            //     0.0, 0.0, 1.0;
 
             // Getting rotational matrix Rw_6 relative to the world frame
             Matrix3d Rw_6;
@@ -219,9 +217,31 @@ int main()
             /// This is how ZYX works not the other way around conventionally
             // cerr << endl;
             // Rw_6 = pw_6 * rw_6 * yw_6;
-            Rw_6 = yw_6 * rw_6 * pw_6;
+            // Rw_6 = yw_6 * rw_6 * pw_6;
             // cerr << "Rw_6 = " << endl;
             // cerr << Rw_6 << endl;
+            cout << "input r11: "; // Type a number and press enter
+            cin >> Rw_6(0,0);           // Get user input from the keyboard
+            cout << "input r12: "; // Type a number and press enter
+            cin >> Rw_6(0,1);           // Get user input from the keyboard
+            cout << "input r13: "; // Type a number and press enter
+            cin >> Rw_6(0,2);           // Get user input from the keyboard
+            cout << "input r21: "; // Type a number and press enter
+            cin >> Rw_6(1,0);           // Get user input from the keyboard
+            cout << "input r22: "; // Type a number and press enter
+            cin >> Rw_6(1,1);           // Get user input from the keyboard
+            cout << "input r23: "; // Type a number and press enter
+            cin >> Rw_6(1,2);           // Get user input from the keyboard
+            cout << "input r31: "; // Type a number and press enter
+            cin >> Rw_6(2,0);           // Get user input from the keyboard
+            cout << "input r32: "; // Type a number and press enter
+            cin >> Rw_6(2,1);           // Get user input from the keyboard
+            cout << "input r33: "; // Type a number and press enter
+            cin >> Rw_6(2,2);           // Get user input from the keyboard
+            cout << "rotation matrix: "; // Type a number and press enter
+
+            cout << Rw_6 ;
+
 
             /// Convert rotational matrix Rw_6 to R0_6
             Matrix3d R0_6;
