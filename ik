@@ -163,9 +163,12 @@ int main()
             Matrix3d rw_6;
             Matrix3d pw_6;
             Matrix3d yw_6;
-            double u, v, w;
+            double u, v1,v2, w1,w2;
 
+            Matrix3d R3_0;
             Matrix3d R0_3;
+            Matrix3d R6_3;
+
             R0_3 << cos(u) * cos(v + w), sin(u), cos(u) * sin(v + w),
                 cos(v + w) * sin(u), -1 * cos(u), sin(u) * sin(v + w),
                 sin(v + w), 0, -1 * cos(v + w);
@@ -246,8 +249,16 @@ int main()
             // h2_1=atan2((a2+a3*cos(tetha3_2)),(a3*sin(tetha3_2)));
 
             tetha2_1 = h1 - h2;
-            /////calculating H3-0 h3-0=h1-0*h2-1*h3-2
+            //            tetha2_2 = h1 - h2_1;
 
+            /////calculating H3-0 h3-0=h1-0*h2-1*h3-2
+            u = tetha1;
+            v1 = tetha2_1;
+            //v2 = tetha2_2;
+            w1 = tetha3_1;
+            R3_0 = R0_3.inverse();
+            R3_6 = R3_0 * R0_6 ;
+           // w2 = tetha3_2;
             ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
         }
     }
