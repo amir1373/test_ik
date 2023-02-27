@@ -163,11 +163,11 @@ int main()
             double Xe = 0;        // mm
             double Ye = 0;        // mm
             double Ze = 0;        // mm
-            cout << "input Xe: "; // Type a number and press enter
+            cout << "input Xe: \n"; // Type a number and press enter
             cin >> Xe;            // Get user input from the keyboard
-            cout << "input Ye: "; // Type a number and press enter
+            cout << "input Ye: \n"; // Type a number and press enter
             cin >> Ye;            // Get user input from the keyboard
-            cout << "input Ze: "; // Type a number and press enter
+            cout << "input Ze: \n"; // Type a number and press enter
             cin >> Ze;            // Get user input from the keyboard
 
             ///--------------------Construct HTM for H0_6------------------------///
@@ -220,25 +220,25 @@ int main()
             // Rw_6 = yw_6 * rw_6 * pw_6;
             // cerr << "Rw_6 = " << endl;
             // cerr << Rw_6 << endl;
-            cout << "input r11: "; // Type a number and press enter
+            cout << "input r11: \n"; // Type a number and press enter
             cin >> Rw_6(0,0);           // Get user input from the keyboard
-            cout << "input r12: "; // Type a number and press enter
+            cout << "input r12: \n"; // Type a number and press enter
             cin >> Rw_6(0,1);           // Get user input from the keyboard
-            cout << "input r13: "; // Type a number and press enter
+            cout << "input r13: \n"; // Type a number and press enter
             cin >> Rw_6(0,2);           // Get user input from the keyboard
-            cout << "input r21: "; // Type a number and press enter
+            cout << "input r21: \n"; // Type a number and press enter
             cin >> Rw_6(1,0);           // Get user input from the keyboard
-            cout << "input r22: "; // Type a number and press enter
+            cout << "input r22: \n"; // Type a number and press enter
             cin >> Rw_6(1,1);           // Get user input from the keyboard
-            cout << "input r23: "; // Type a number and press enter
+            cout << "input r23: \n"; // Type a number and press enter
             cin >> Rw_6(1,2);           // Get user input from the keyboard
-            cout << "input r31: "; // Type a number and press enter
+            cout << "input r31: \n"; // Type a number and press enter
             cin >> Rw_6(2,0);           // Get user input from the keyboard
-            cout << "input r32: "; // Type a number and press enter
+            cout << "input r32: \n"; // Type a number and press enter
             cin >> Rw_6(2,1);           // Get user input from the keyboard
-            cout << "input r33: "; // Type a number and press enter
+            cout << "input r33: \n"; // Type a number and press enter
             cin >> Rw_6(2,2);           // Get user input from the keyboard
-            cout << "rotation matrix: "; // Type a number and press enter
+            cout << "rotation matrix:\n "; // Type a number and press enter
 
             cout << Rw_6 ;
 
@@ -325,32 +325,32 @@ int main()
             else
             {
 
-                cout << "you are fucked "; // Type a number and press enter
+                cout << "you are fucked:\n "; // Type a number and press enter
 
                 cout << tetha5_1; // Type a number and press enter
             }
 
-                cout << "tetha1: "; // Type a number and press enter
+                cout << "tetha1: \n"; // Type a number and press enter
 
                 cout << tetha1; // Type a number and press enter
                 
-                cout << "tetha2 "; // Type a number and press enter
+                cout << "tetha2:\n "; // Type a number and press enter
 
                 cout << tetha2_1; // Type a number and press enter
                 
-                cout << "tetha3 "; // Type a number and press enter
+                cout << "tetha3:\n "; // Type a number and press enter
 
                 cout << tetha3_1; // Type a number and press enter
                 
-                cout << "tetha4:"; // Type a number and press enter
+                cout << "tetha4:\n"; // Type a number and press enter
 
                 cout << tetha4; // Type a number and press enter
                 
-                cout << "tetha5: "; // Type a number and press enter
+                cout << "tetha5: \n"; // Type a number and press enter
 
                 cout << tetha5_1; // Type a number and press enter
                 
-                cout << "tetha6"; // Type a number and press enter
+                cout << "tetha6:\n"; // Type a number and press enter
 
                 cout << tetha6; // Type a number and press enter
             ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
