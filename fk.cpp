@@ -10,12 +10,12 @@ using namespace Eigen;
 
 #define PI 3.14159265358979323846 /* pi */
 
-#define d1 .0450
+#define d1 .6455
 #define d2 0
 #define d3 0
-#define d4 0.640
+#define d4 1.245
 #define d5 0
-#define d6 0.095
+#define d6 0.240
 
 #define alpha1 (-90 * (PI / 180))
 #define alpha2 (0 * (PI / 180))
@@ -24,9 +24,9 @@ using namespace Eigen;
 #define alpha5 (-90 * (PI / 180))
 #define alpha6 (0 * (PI / 180))
 
-#define a1 0.150
-#define a2 0.570
-#define a3 0.130
+#define a1 0.260
+#define a2 1.150
+#define a3 0.230
 #define a4 0
 #define a5 0
 #define a6 0

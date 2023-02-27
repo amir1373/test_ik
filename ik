@@ -33,10 +33,10 @@ using namespace Eigen;
 
 double tetha1;
 double tetha2_2;
-double tetha2_1;     // tetha3 has two answer
+double tetha2_1; // tetha3 has two answer
 double tetha3;
-double tetha3_1;     // tetha3 has two answer
-double tetha3_2;     // tetha3 has two answer
+double tetha3_1; // tetha3 has two answer
+double tetha3_2; // tetha3 has two answer
 double tetha4;
 double tetha5;
 double tetha5_1;
@@ -96,7 +96,6 @@ EulerAngles_ toEulerAngle(Quaternion_ q)
     return e_;
 }
 
-
 int main()
 {
 
@@ -137,16 +136,15 @@ int main()
             // q_.x = randomPose_[4];
             // q_.y = randomPose_[5];
             // q_.z = randomPose_[6];
-                    cout << "input q.w: "; // Type a number and press enter
-        cin >> q_.w;            // Get user input from the keyboard
-        cout << "input q.x: "; // Type a number and press enter
-        cin >> q_.x;            // Get user input from the keyboard
-        cout << "input q.y: "; // Type a number and press enter
-        cin >> q_.y;            // Get user input from the keyboard
- 
+            cout << "input q.w: "; // Type a number and press enter
+            cin >> q_.w;           // Get user input from the keyboard
+            cout << "input q.x: "; // Type a number and press enter
+            cin >> q_.x;           // Get user input from the keyboard
+            cout << "input q.y: "; // Type a number and press enter
+            cin >> q_.y;           // Get user input from the keyboard
 
-        cout << "input q.z: "; // Type a number and press enter
-        cin >> q_.z;            // Get user input from the keyboard
+            cout << "input q.z: "; // Type a number and press enter
+            cin >> q_.z;           // Get user input from the keyboard
 
             // cerr << "quaternion pose ---------------------- just before toEulerAngle -------------------------" << endl;
             // cerr << "w = " << q_.w << ", " << "x = " << q_.x << ", " << "y = " << q_.y << ", " << "z = " << q_.z << endl;
@@ -162,9 +160,9 @@ int main()
             // double Xe = randomPose_[0] * 1000; // mm
             // double Ye = randomPose_[1] * 1000; // mm
             // double Ze = randomPose_[2] * 1000; // mm
-            double Xe = 0; // mm
-            double Ye = 0; // mm
-            double Ze = 0; // mm
+            double Xe = 0;        // mm
+            double Ye = 0;        // mm
+            double Ze = 0;        // mm
             cout << "input Xe: "; // Type a number and press enter
             cin >> Xe;            // Get user input from the keyboard
 
@@ -172,8 +170,6 @@ int main()
             cin >> Ye;            // Get user input from the keyboard
             cout << "input Ze: "; // Type a number and press enter
             cin >> Ze;            // Get user input from the keyboard
-
-
 
             ///--------------------Construct HTM for H0_6------------------------///
             // Create displacement vector relative to the world frame
@@ -189,13 +185,13 @@ int main()
             Matrix3d rw_6;
             Matrix3d pw_6;
             Matrix3d yw_6;
-            double u, v1,v2, w1,w2;
+            double u, v1, v2, w1, w2;
 
             Matrix3d R3_0;
             Matrix3d R0_3;
             Matrix3d R3_6;
 
-            double r11,r12,r13,r21,r22,r23,r31,r32,r33;
+            double r11, r12, r13, r21, r22, r23, r31, r32, r33;
 
             R0_3 << cos(u) * cos(v1 + w1), sin(u), cos(u) * sin(v1 + w1),
                 cos(v1 + w1) * sin(u), -1 * cos(u), sin(u) * sin(v1 + w1),
@@ -263,14 +259,14 @@ int main()
 
             /// Solve for T1
             // Compute Theta 1 in order to get d1_c
-            tetha1 = atan2(-1*X0_c, Y0_c);
+            tetha1 = atan2(-1 * X0_c, Y0_c);
             // calculate tetha3
             r = pow(pow(X0_c, 2.0) + pow(Y0_c, 2.0) - pow(shOffset, 2), 0.5);
             s = Z0_c - d1;
             tetha3 = ((pow(r, 2) + pow(s, 2) - pow(a2, 2) - pow(a3, 2)) / (2 * a2 * a3));
             D = cos(tetha3);
             tetha3_1 = atan2(D, pow(1 - pow(D, 2), 0.5));
-            tetha3_2 = atan2(D, -1*pow(1 - pow(D, 2), 0.5));
+            tetha3_2 = atan2(D, -1 * pow(1 - pow(D, 2), 0.5));
             // calculating tetha2
             h1 = atan2(r, s);
             h2 = atan2((a2 + a3 * cos(tetha3_1)), (a3 * sin(tetha3_1)));
@@ -282,35 +278,36 @@ int main()
             /////calculating H3-0 h3-0=h1-0*h2-1*h3-2
             u = tetha1;
             v1 = tetha2_1;
-            //v2 = tetha2_2;
+            // v2 = tetha2_2;
             w1 = tetha3_1;
             R3_0 = R0_3.inverse();
-            R3_6 = R3_0 * R0_6 ;
-           // w2 = tetha3_2;
-           r33 = R3_6(2,2);
-           r13 = R3_6(0,2);
-           r23 = R3_6(1,2);
-           r31 = R3_6(2,0);
-           r32 = R3_6(2,1);
+            R3_6 = R3_0 * R0_6;
+            // w2 = tetha3_2;
+            r33 = R3_6(2, 2);
+            r13 = R3_6(0, 2);
+            r23 = R3_6(1, 2);
+            r31 = R3_6(2, 0);
+            r32 = R3_6(2, 1);
 
-           tetha5_1 = atan2(r33,pow(pow(r13,2)+pow(r23,2),.5));
-           //tetha5_2 = atan2(r33,-1*pow(pow(r13,2)+pow(r23,2),.5));
-           if(tetha5_1 > 0 && tetha5_1 < PI){
-            tetha4 = atan2(r13,r23);
-            tetha6 = atan2(r31,r32); 
+            tetha5_1 = atan2(r33, pow(pow(r13, 2) + pow(r23, 2), .5));
+            // tetha5_2 = atan2(r33,-1*pow(pow(r13,2)+pow(r23,2),.5));
+            if (tetha5_1 > 0 && tetha5_1 < PI)
+            {
+                tetha4 = atan2(r13, r23);
+                tetha6 = atan2(r31, r32);
+            }
+            else if (tetha5_1 > (-1 * PI) && tetha5_1 < 0)
+            {
+                tetha4 = atan2(-1 * r13, -1 * r23);
+                tetha6 = atan2(r31, -1 * r32);
+            }
+            else
+            {
 
-        
-           }else if(tetha5_1 > (-1 * PI) && tetha5_1 < 0 ){
-            tetha4 = atan2(-1* r13, -1 * r23);
-            tetha6 = atan2(r31,-1*r32); 
-           }else{
+                cout << "you are fucked "; // Type a number and press enter
 
-        cout << "you are fucked "; // Type a number and press enter
-
-cout << tetha5_1; // Type a number and press enter
-        
-
-           }
+                cout << tetha5_1; // Type a number and press enter
+            }
 
             ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
         }
