@@ -45,11 +45,14 @@ double shOffset=0; //shoulder offset
 double D; // D is cos(tetha3)
 double tetha3_1;// tetha3 has two answer
 double tetha3_2;//tetha3 has two answer
+double tetha2_1;//tetha3 has two answer
 double h1; // h1 is used to calculate tetha2
 double h2; //h2 is used for calculating tetha3 
 
 // input end effector pos(0-2) and or(3-6)
 vector<double> randomPose;
+vector<double> goalJointAngle;
+vector<double> ee_FKPose;
 
 
 //convert Quaternion to Euler
@@ -131,7 +134,7 @@ while(1){
     q_.z = randomPose_[6];
     //cerr << "quaternion pose ---------------------- just before toEulerAngle -------------------------" << endl;
     //cerr << "w = " << q_.w << ", " << "x = " << q_.x << ", " << "y = " << q_.y << ", " << "z = " << q_.z << endl;
-
+    RowVector4d Last_row(0.0, 0.0, 0.0, 1.0);
     e_ = toEulerAngle(q_);
 
     double Tp = e_.pitch; //Y axis
@@ -242,4 +245,5 @@ while(1){
 
     ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
 
+}
 }
