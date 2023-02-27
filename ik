@@ -63,6 +63,7 @@ struct EulerAngles_ {
 
 //Notice the Euler angle rotation order is ZYX
 EulerAngles_ toEulerAngle(Quaternion_ q)
+
 {
     //cerr << "inside toEulerAngle function ******************************************* " << endl;
     //cerr << "w = " << q.w << ", " << "x = " << q.x << ", " << "y = " << q.y << ", " << "z = " << q.z << endl;
@@ -90,6 +91,10 @@ EulerAngles_ toEulerAngle(Quaternion_ q)
     // cerr << "roll (X axis) = " << e_.roll << ", " << "pitch (Y axis) = " << e_.pitch << ", " << "yaw (Z axis) = " << e_.yaw << endl;
     return e_;
 }
+int main(){
+
+while(1){
+{
 ///------------------Define rotation matrix between adjacent frames------------------///
     Matrix3d R0_1;
     Matrix3d R1_2;
@@ -155,19 +160,19 @@ EulerAngles_ toEulerAngle(Quaternion_ q)
     Matrix3d yw_6;
 
     //X axis
-    pw_6 << 1.0d, 0.0d,     0.0d,
-            0.0d, cos(Tr), -sin(Tr),
-            0.0d, sin(Tr),  cos(Tr);
+    pw_6 << 1.0, 0.0,     0.0,
+            0.0, cos(Tr), -sin(Tr),
+            0.0, sin(Tr),  cos(Tr);
 
     //Y axis
-    rw_6 << cos(Tp), 0.0d, sin(Tp),
-            0.0d,    1.0d, 0.0d,
-           -sin(Tp), 0.0d, cos(Tp);
+    rw_6 << cos(Tp), 0.0, sin(Tp),
+            0.0,    1.0, 0.0,
+           -sin(Tp), 0.0, cos(Tp);
 
     //Z axis
-    yw_6 << cos(Ty), -sin(Ty), 0.0d,
-            sin(Ty),  cos(Ty), 0.0d,
-            0.0d,     0.0d,    1.0d;
+    yw_6 << cos(Ty), -sin(Ty), 0.0,
+            sin(Ty),  cos(Ty), 0.0,
+            0.0,     0.0,    1.0;
 
 
     //Getting rotational matrix Rw_6 relative to the world frame
@@ -223,21 +228,18 @@ EulerAngles_ toEulerAngle(Quaternion_ q)
     //calculate tetha3 
     r=pow(pow(X0_c, 2.0) + pow(Y0_c, 2.0)-pow(shOffset,2), 0.5);
     s=Z0_c-d1;
-    cos(tetha3)=((pow(r,2)+pow(s,2)-pow(a2,2)-pow(a3,2))/(2*a2*a3));
+    tetha3=((pow(r,2)+pow(s,2)-pow(a2,2)-pow(a3,2))/(2*a2*a3));
     D=cos(tetha3);
     tetha3_1=atan2(D,pow(1 -pow(D,2), 0.5));
     tetha3_2=atan2(D,-pow(1 -pow(D,2), 0.5));
     //calculating tetha2
     h1=atan2(r,s);
     h2=atan2((a2+a3*cos(tetha3_1)),(a3*sin(tetha3_1)));
-    tetha2=h1-h2;
+    //h2_1=atan2((a2+a3*cos(tetha3_2)),(a3*sin(tetha3_2)));
+
+    tetha2_1=h1-h2;
     /////calculating H3-0 h3-0=h1-0*h2-1*h3-2
-    
-
-
-
-
 
     ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
 
-
+}
