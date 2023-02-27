@@ -240,7 +240,7 @@ int main()
             cin >> Rw_6(2,2);           // Get user input from the keyboard
             cout << "rotation matrix:\n "; // Type a number and press enter
 
-            cout << Rw_6 ;
+            cout << Rw_6 <<"\n";
 
 
             /// Convert rotational matrix Rw_6 to R0_6
@@ -270,7 +270,12 @@ int main()
             Vector3d Zw_6 = Rw_6.col(2);
 
             // Getting wrist center vector relative to frame 0
-            Vector3d d0_c = d0_6 - (d5 * Z0_6);
+            Vector3d d0_c = d0_6 - (d6 * Z0_6);
+                        cout << "d0_6:\n "; // Type a number and press enter
+                        cout << d0_6 <<"\n"; // Type a number and press enter
+                        cout << "d0_c:\n "; // Type a number and press enter
+                        cout <<d0_c << "\n"; // Type a number and press enter
+
 
             // cerr << "d0_c = " << endl << d0_c << endl << endl;
 
@@ -327,32 +332,32 @@ int main()
 
                 cout << "you are fucked:\n "; // Type a number and press enter
 
-                cout << tetha5_1; // Type a number and press enter
+                cout << tetha5_1<<"\n"; // Type a number and press enter
             }
 
                 cout << "tetha1: \n"; // Type a number and press enter
 
-                cout << tetha1; // Type a number and press enter
+                cout << tetha1<<"\n"; // Type a number and press enter
                 
                 cout << "tetha2:\n "; // Type a number and press enter
 
-                cout << tetha2_1; // Type a number and press enter
+                cout << tetha2_1<<"\n"; // Type a number and press enter
                 
                 cout << "tetha3:\n "; // Type a number and press enter
 
-                cout << tetha3_1; // Type a number and press enter
+                cout << tetha3_1<<"\n"; // Type a number and press enter
                 
                 cout << "tetha4:\n"; // Type a number and press enter
 
-                cout << tetha4; // Type a number and press enter
+                cout << tetha4<<"\n"; // Type a number and press enter
                 
                 cout << "tetha5: \n"; // Type a number and press enter
 
-                cout << tetha5_1; // Type a number and press enter
+                cout << tetha5_1<<"\n"; // Type a number and press enter
                 
                 cout << "tetha6:\n"; // Type a number and press enter
 
-                cout << tetha6; // Type a number and press enter
+                cout << tetha6<<"\n"; // Type a number and press enter
             ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
         }
 }
