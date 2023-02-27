@@ -10,12 +10,12 @@ using namespace std;
 using namespace Eigen;
 
 #define PI 3.14159265358979323846 /* pi */
-#define d1 .0450
+#define d1 .6455
 #define d2 0
 #define d3 0
-#define d4 0.640
+#define d4 1.245
 #define d5 0
-#define d6 0.095
+#define d6 0.240
 
 #define alpha1 (-90 * (PI / 180))
 #define alpha2 (0 * (PI / 180))
@@ -24,27 +24,29 @@ using namespace Eigen;
 #define alpha5 (-90 * (PI / 180))
 #define alpha6 (0 * (PI / 180))
 
-#define a1 0.150
-#define a2 0.570
-#define a3 0.130
+#define a1 0.260
+#define a2 1.150
+#define a3 0.230
 #define a4 0
 #define a5 0
 #define a6 0
 
 double tetha1;
-double tetha2;
+double tetha2_2;
+double tetha2_1;     // tetha3 has two answer
 double tetha3;
+double tetha3_1;     // tetha3 has two answer
+double tetha3_2;     // tetha3 has two answer
 double tetha4;
 double tetha5;
+double tetha5_1;
+double tetha5_2;
 double tetha6;
 ////////////////////////////////////////////////////////////////
 double r = 0;
 double s = 0;
 double shOffset = 0; // shoulder offset
 double D;            // D is cos(tetha3)
-double tetha3_1;     // tetha3 has two answer
-double tetha3_2;     // tetha3 has two answer
-double tetha2_1;     // tetha3 has two answer
 double h1;           // h1 is used to calculate tetha2
 double h2;           // h2 is used for calculating tetha3
 
@@ -66,7 +68,6 @@ struct EulerAngles_
 
 // Notice the Euler angle rotation order is ZYX
 EulerAngles_ toEulerAngle(Quaternion_ q)
-
 {
     // cerr << "inside toEulerAngle function ******************************************* " << endl;
     // cerr << "w = " << q.w << ", " << "x = " << q.x << ", " << "y = " << q.y << ", " << "z = " << q.z << endl;
@@ -94,6 +95,8 @@ EulerAngles_ toEulerAngle(Quaternion_ q)
     // cerr << "roll (X axis) = " << e_.roll << ", " << "pitch (Y axis) = " << e_.pitch << ", " << "yaw (Z axis) = " << e_.yaw << endl;
     return e_;
 }
+
+
 int main()
 {
 
@@ -130,10 +133,21 @@ int main()
             Quaternion_ q_;
             EulerAngles_ e_;
 
-            q_.w = randomPose_[3];
-            q_.x = randomPose_[4];
-            q_.y = randomPose_[5];
-            q_.z = randomPose_[6];
+            // q_.w = randomPose_[3];
+            // q_.x = randomPose_[4];
+            // q_.y = randomPose_[5];
+            // q_.z = randomPose_[6];
+                    cout << "input q.w: "; // Type a number and press enter
+        cin >> q_.w;            // Get user input from the keyboard
+        cout << "input q.x: "; // Type a number and press enter
+        cin >> q_.x;            // Get user input from the keyboard
+        cout << "input q.y: "; // Type a number and press enter
+        cin >> q_.y;            // Get user input from the keyboard
+ 
+
+        cout << "input q.z: "; // Type a number and press enter
+        cin >> q_.z;            // Get user input from the keyboard
+
             // cerr << "quaternion pose ---------------------- just before toEulerAngle -------------------------" << endl;
             // cerr << "w = " << q_.w << ", " << "x = " << q_.x << ", " << "y = " << q_.y << ", " << "z = " << q_.z << endl;
             RowVector4d Last_row(0.0, 0.0, 0.0, 1.0);
@@ -145,9 +159,21 @@ int main()
             // cerr << "Tr = " << Tr << ", " << "Tp = " << Tp << ", " << "Ty = " << Ty << endl;
 
             // Displacement input from user in meter relative to the world frame
-            double Xe = randomPose_[0] * 1000; // mm
-            double Ye = randomPose_[1] * 1000; // mm
-            double Ze = randomPose_[2] * 1000; // mm
+            // double Xe = randomPose_[0] * 1000; // mm
+            // double Ye = randomPose_[1] * 1000; // mm
+            // double Ze = randomPose_[2] * 1000; // mm
+            double Xe = 0; // mm
+            double Ye = 0; // mm
+            double Ze = 0; // mm
+            cout << "input Xe: "; // Type a number and press enter
+            cin >> Xe;            // Get user input from the keyboard
+
+            cout << "input Ye: "; // Type a number and press enter
+            cin >> Ye;            // Get user input from the keyboard
+            cout << "input Ze: "; // Type a number and press enter
+            cin >> Ze;            // Get user input from the keyboard
+
+
 
             ///--------------------Construct HTM for H0_6------------------------///
             // Create displacement vector relative to the world frame
@@ -167,11 +193,13 @@ int main()
 
             Matrix3d R3_0;
             Matrix3d R0_3;
-            Matrix3d R6_3;
+            Matrix3d R3_6;
 
-            R0_3 << cos(u) * cos(v + w), sin(u), cos(u) * sin(v + w),
-                cos(v + w) * sin(u), -1 * cos(u), sin(u) * sin(v + w),
-                sin(v + w), 0, -1 * cos(v + w);
+            double r11,r12,r13,r21,r22,r23,r31,r32,r33;
+
+            R0_3 << cos(u) * cos(v1 + w1), sin(u), cos(u) * sin(v1 + w1),
+                cos(v1 + w1) * sin(u), -1 * cos(u), sin(u) * sin(v1 + w1),
+                sin(v1 + w1), 0, -1 * cos(v1 + w1);
             // X axis
             pw_6 << 1.0, 0.0, 0.0,
                 0.0, cos(Tr), -sin(Tr),
@@ -235,14 +263,14 @@ int main()
 
             /// Solve for T1
             // Compute Theta 1 in order to get d1_c
-            tetha1 = atan2(-X0_c, Y0_c);
+            tetha1 = atan2(-1*X0_c, Y0_c);
             // calculate tetha3
             r = pow(pow(X0_c, 2.0) + pow(Y0_c, 2.0) - pow(shOffset, 2), 0.5);
             s = Z0_c - d1;
             tetha3 = ((pow(r, 2) + pow(s, 2) - pow(a2, 2) - pow(a3, 2)) / (2 * a2 * a3));
             D = cos(tetha3);
             tetha3_1 = atan2(D, pow(1 - pow(D, 2), 0.5));
-            tetha3_2 = atan2(D, -pow(1 - pow(D, 2), 0.5));
+            tetha3_2 = atan2(D, -1*pow(1 - pow(D, 2), 0.5));
             // calculating tetha2
             h1 = atan2(r, s);
             h2 = atan2((a2 + a3 * cos(tetha3_1)), (a3 * sin(tetha3_1)));
@@ -259,6 +287,31 @@ int main()
             R3_0 = R0_3.inverse();
             R3_6 = R3_0 * R0_6 ;
            // w2 = tetha3_2;
+           r33 = R3_6(2,2);
+           r13 = R3_6(0,2);
+           r23 = R3_6(1,2);
+           r31 = R3_6(2,0);
+           r32 = R3_6(2,1);
+
+           tetha5_1 = atan2(r33,pow(pow(r13,2)+pow(r23,2),.5));
+           //tetha5_2 = atan2(r33,-1*pow(pow(r13,2)+pow(r23,2),.5));
+           if(tetha5_1 > 0 && tetha5_1 < PI){
+            tetha4 = atan2(r13,r23);
+            tetha6 = atan2(r31,r32); 
+
+        
+           }else if(tetha5_1 > (-1 * PI) && tetha5_1 < 0 ){
+            tetha4 = atan2(-1* r13, -1 * r23);
+            tetha6 = atan2(r31,-1*r32); 
+           }else{
+
+        cout << "you are fucked "; // Type a number and press enter
+
+cout << tetha5_1; // Type a number and press enter
+        
+
+           }
+
             ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
         }
     }
