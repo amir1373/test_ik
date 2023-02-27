@@ -5,6 +5,7 @@
 
 #include <math.h>
 #include <numeric>
+// alt + shift + f for indentation
 
 using namespace std;
 using namespace Eigen;
