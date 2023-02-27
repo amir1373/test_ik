@@ -101,7 +101,7 @@ int main()
 
     while (1)
     {
-        {
+        
             ///------------------Define rotation matrix between adjacent frames------------------///
             Matrix3d R0_1;
             Matrix3d R1_2;
@@ -309,6 +309,29 @@ int main()
                 cout << tetha5_1; // Type a number and press enter
             }
 
+                cout << "tetha1: "; // Type a number and press enter
+
+                cout << tetha1; // Type a number and press enter
+                
+                cout << "tetha2 "; // Type a number and press enter
+
+                cout << tetha2_1; // Type a number and press enter
+                
+                cout << "tetha3 "; // Type a number and press enter
+
+                cout << tetha3_1; // Type a number and press enter
+                
+                cout << "tetha4:"; // Type a number and press enter
+
+                cout << tetha4; // Type a number and press enter
+                
+                cout << "tetha5: "; // Type a number and press enter
+
+                cout << tetha5_1; // Type a number and press enter
+                
+                cout << "tetha6"; // Type a number and press enter
+
+                cout << tetha6; // Type a number and press enter
             ////////////////calculating H3-6,,,H3-6=(transpose (H0-3))*H(0-6)
         }
-    }
+}
