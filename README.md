@@ -1,8 +1,8 @@
 # Test IK
 
-Forward and inverse kinematics experiments for a robot arm, written mainly in C++ with some supporting Python scripts.
+Forward and inverse kinematics experiments for a robot arm, written mainly in C++ with a supporting Python script.
 
-## Contents
+## What This Repository Contains
 
 - `fk.cpp`, `fk1.cpp` - forward kinematics experiments.
 - `ik.cpp`, `ik1.cpp`, `ik_last1.cpp`, `iktest.cpp` - inverse kinematics experiments and test variants.
@@ -13,7 +13,7 @@ Forward and inverse kinematics experiments for a robot arm, written mainly in C+
 
 ## Build
 
-The C++ files are standalone experiments. Build the file you want to test with a C++ compiler and include the Eigen headers if needed, for example:
+The C++ files are standalone experiments. Build the file you want to test with a C++ compiler and include the Eigen headers if needed:
 
 ```bash
 g++ ik.cpp -I Eigen -o ik
